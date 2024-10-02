@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider       = "zod-prisma-types"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Doctor {
+  id             Int      @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  hpr            String   @unique
+  citizenId      String   @unique
+  dateOfBirth    DateTime
+  gender         String   // Consider using an Enum if there are specific values
+  mobile         String   @unique
+  email          String   @unique
+  speciality     String  
+  sessions       String?
+  education      String?
+  status         String
+  address        String
+  city           String?
+  country        String?
+  postcode       String
+  relativeName   String?
+  relativeNumber String?
+  description    String?
+}
